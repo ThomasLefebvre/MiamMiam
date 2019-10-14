@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+            android:id="@+id/nav_bottom_recipes"
+            android:icon="@drawable/ic_hotpeasf"
+            android:title="Recettes"/>
+
+
+
+    <item
+            android:id="@+id/nav_bottom_category"
+            android:icon="@drawable/ic_picnic"
+            android:title="Catégories"/>
+
+    <item
+            android:id="@+id/nav_bottom_book"
+            android:icon="@drawable/ic_cookingbook"
+            android:title="Ton livre"/>
+</menu>

@@ -34,4 +34,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.firebase:firebase-analytics:17.2.0'//firebase sdk
+    implementation 'com.firebaseui:firebase-ui-auth:5.0.0'//firebase ui
+    implementation 'com.facebook.android:facebook-android-sdk:5.8.0'//facebook sdk
+
 }
+
+apply plugin: 'com.google.gms.google-services'
