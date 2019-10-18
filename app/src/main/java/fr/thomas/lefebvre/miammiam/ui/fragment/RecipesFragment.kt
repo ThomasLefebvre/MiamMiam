@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import fr.thomas.lefebvre.miammiam.R
-import fr.thomas.lefebvre.miammiam.ui.activity.RecipeActivity
+import fr.thomas.lefebvre.miammiam.ui.activity.RecipeDetailsActivity
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,7 +34,7 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //TODO DELETE AFTER TEST
         imageButton_Recipe_Of_Day.setOnClickListener {
-            startActivity(Intent(requireContext(),RecipeActivity::class.java))
+            startActivity(Intent(requireContext(),RecipeDetailsActivity::class.java))
         }
 
         super.onViewCreated(view, savedInstanceState)

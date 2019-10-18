@@ -13,7 +13,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.RecipeActivity">
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="@string/pub_key"/>
+
+        <activity android:name=".ui.activity.RecipeDetailsActivity">
         </activity>
         <activity
                 android:name=".ui.activity.SplashScreenActivity"
