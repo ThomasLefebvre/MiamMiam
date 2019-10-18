@@ -1,6 +1,7 @@
 package fr.thomas.lefebvre.miammiam.ui.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import fr.thomas.lefebvre.miammiam.R
+import fr.thomas.lefebvre.miammiam.ui.activity.RecipeActivity
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +32,10 @@ class RecipesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //TODO DELETE AFTER TEST
+        imageButton_Recipe_Of_Day.setOnClickListener {
+            startActivity(Intent(requireContext(),RecipeActivity::class.java))
+        }
 
         super.onViewCreated(view, savedInstanceState)
     }

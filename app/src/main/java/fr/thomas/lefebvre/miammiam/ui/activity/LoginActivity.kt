@@ -5,13 +5,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseUser
 import fr.thomas.lefebvre.miammiam.R
+import fr.thomas.lefebvre.miammiam.service.UserHelper
 
 class LoginActivity : AppCompatActivity() {
 
     private val RC_SIGN_IN: Int = 123
     lateinit var providers: List<AuthUI.IdpConfig>
-    private val DEBUG_TAG="DEBUG_LOGIN_ACTIVITY"
+    private val userHelper=UserHelper()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,14 @@ class LoginActivity : AppCompatActivity() {
                 .build(),
             RC_SIGN_IN)
 
+    }
+
+    private fun createUserToDataBaseIfNotExist(currentUser: FirebaseUser){
+        userHelper.getUserById(currentUser.uid).addOnSuccessListener { documentSnapshot ->
+            if(!documentSnapshot.exists()){
+                userHelper.createUser(currentUser.uid,currentUser.displayName!!,currentUser.email!!,currentUser.photoUrl.toString())
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
