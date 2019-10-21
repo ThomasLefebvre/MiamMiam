@@ -37,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setTheme(R.style.AppSign)
+                .setLogo(R.drawable.ic_tomato)
                 .setAvailableProviders(providers)
 //                .setIsSmartLockEnabled(false)//TODO DELETE FOR AUTOMATIC CHECK LOGIN
                 .build(),
@@ -64,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 createUserToDataBaseIfNotExist(FirebaseAuth.getInstance().currentUser)
-                startActivity(Intent(this, SplashScreenActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
                 // ...
             } else {

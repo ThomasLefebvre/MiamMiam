@@ -19,11 +19,11 @@ class RecipeHelper {
 
     //--- GET RECIPE ---
 
-    private fun getAllRecipes():Task<QuerySnapshot>{
+     fun getAllRecipes():Task<QuerySnapshot>{
         return getRecipesCollection().get()
     }
 
-    private fun getRecipeById(uid:String): Task<DocumentSnapshot> {
+     fun getRecipeById(uid:String): Task<DocumentSnapshot> {
         return getRecipesCollection().document(uid).get()
     }
 }

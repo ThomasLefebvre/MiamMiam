@@ -7,21 +7,20 @@
 
     <application
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_launcher_tomato"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@mipmap/ic_launcher_tomato_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.activity.Main2ActivityTest">
+        </activity>
+
         <meta-data
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
                 android:value="@string/pub_key"/>
 
         <activity android:name=".ui.activity.RecipeDetailsActivity">
-        </activity>
-        <activity
-                android:name=".ui.activity.SplashScreenActivity"
-                android:theme="@style/AppSign">
         </activity>
         <activity
                 android:name=".ui.activity.LoginActivity"

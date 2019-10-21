@@ -12,6 +12,10 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="menu_bottom_miam">Miam</string>
+    <string name="menu_bottom_category">Catégories</string>
+    <string name="menu_bottom_book">Ton livre</string>
+
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -25,9 +29,12 @@
 
 
     <string name="ingredients">Ingrédients :</string>
-    <string name="calories">Calories :</string>
+    <string name="etapes">Étapes :</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="classique">Miam Classique</string>
+    <string name="funny">Miam Funny</string>
+    <string name="voyage">Miam Voyage</string>
 
 </resources>

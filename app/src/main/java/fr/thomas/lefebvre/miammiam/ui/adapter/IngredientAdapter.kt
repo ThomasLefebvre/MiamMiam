@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.thomas.lefebvre.miammiam.R
+import java.lang.StringBuilder
 
 class IngredientAdapter(
 
@@ -38,7 +39,8 @@ class IngredientAdapter(
 
 
         fun bind(context: Context, ingredient: String){
-            nameIngredient.text=ingredient
+            val string=StringBuilder("- $ingredient")
+            nameIngredient.text=string
         }
 
     }

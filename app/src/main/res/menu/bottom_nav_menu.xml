@@ -6,17 +6,17 @@
     <item
             android:id="@+id/nav_bottom_recipes"
             android:icon="@drawable/ic_hotpeasf"
-            android:title="Recettes"/>
+            android:title="@string/menu_bottom_miam"/>
 
 
 
     <item
             android:id="@+id/nav_bottom_category"
             android:icon="@drawable/ic_picnic"
-            android:title="Catégories"/>
+            android:title="@string/menu_bottom_category"/>
 
     <item
             android:id="@+id/nav_bottom_book"
             android:icon="@drawable/ic_cookingbook"
-            android:title="Ton livre"/>
+            android:title="@string/menu_bottom_book"/>
 </menu>
