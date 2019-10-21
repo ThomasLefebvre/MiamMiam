@@ -36,5 +36,16 @@
     <string name="classique">Miam Classique</string>
     <string name="funny">Miam Funny</string>
     <string name="voyage">Miam Voyage</string>
+    <string name="start_recipe">Recette Star</string>
+
+
+    <string name="entree">Entrées</string>
+    <string name="aperitifs">Apéritifs</string>
+    <string name="plats">Plats</string>
+    <string name="viandes">Viandes</string>
+    <string name="poissons">Poissons</string>
+    <string name="vege">Végétarien</string>
+    <string name="dessert">Desserts</string>
+    <string name="smoothie">Smoothies</string>
 
 </resources>

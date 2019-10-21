@@ -9,7 +9,6 @@ data class RecipeModel (
     val name:String="",
     val listStep:ArrayList<String>? =null,
     val photoUrl:String="",
-    val photoUrlSmall:String="",
     val listIngredients:ArrayList<String>?=null,
     val quantity:String="",
     val cal:String="",

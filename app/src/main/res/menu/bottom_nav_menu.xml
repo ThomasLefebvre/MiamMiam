@@ -5,7 +5,7 @@
 
     <item
             android:id="@+id/nav_bottom_recipes"
-            android:icon="@drawable/ic_hotpeasf"
+            android:icon="@drawable/ic_covered"
             android:title="@string/menu_bottom_miam"/>
 
 

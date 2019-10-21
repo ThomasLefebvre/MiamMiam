@@ -2,10 +2,7 @@ package fr.thomas.lefebvre.miammiam.service
 
 
 import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 
 class RecipeHelper {
 
@@ -25,5 +22,9 @@ class RecipeHelper {
 
      fun getRecipeById(uid:String): Task<DocumentSnapshot> {
         return getRecipesCollection().document(uid).get()
+    }
+
+    fun getRecipeByUid(tag:String):Task<DocumentSnapshot>{
+        return getRecipesCollection().document("tag").get()
     }
 }
