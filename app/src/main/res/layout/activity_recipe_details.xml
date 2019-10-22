@@ -163,6 +163,16 @@
                     android:layout_height="match_parent" android:id="@+id/textViewTitleRecipes"
                     android:layout_margin="8dp" android:textStyle="bold" android:textSize="18sp"/>
         </androidx.cardview.widget.CardView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true" app:srcCompat="@drawable/ic_heart"
+                android:id="@+id/floatingActionButtonLike"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView"
+
+                app:layout_constraintStart_toEndOf="@+id/cardView" android:layout_marginStart="8dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

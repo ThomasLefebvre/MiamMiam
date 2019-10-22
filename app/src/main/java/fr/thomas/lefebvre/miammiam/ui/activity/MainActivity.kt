@@ -12,13 +12,21 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import fr.thomas.lefebvre.miammiam.R
 import fr.thomas.lefebvre.miammiam.ui.fragment.BookFragment
 import fr.thomas.lefebvre.miammiam.ui.fragment.CategoryFragment
 import fr.thomas.lefebvre.miammiam.ui.fragment.RecipesFragment
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    val currentUser = FirebaseAuth.getInstance().currentUser
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +50,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         changeIconMenuDrawer()
 
         bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        updateUserInformations()
 
     }
 
@@ -120,6 +130,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
+
+    }
+
+    // --- GET USER INFORMATION ---
+
+    fun updateUserInformations(){
+        val navHeader=nav_view.getHeaderView(0)
+        val navUserName=navHeader.textViewNameCurrentUser
+        val stringBuilder=StringBuilder(getString(R.string.chef)+" "+currentUser?.displayName)
+        navUserName.text=stringBuilder
 
     }
 }
