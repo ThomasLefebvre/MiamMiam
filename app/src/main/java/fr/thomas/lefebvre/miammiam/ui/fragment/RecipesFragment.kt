@@ -3,6 +3,7 @@ package fr.thomas.lefebvre.miammiam.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -42,7 +43,8 @@ class RecipesFragment : Fragment() {
     lateinit var adapterClassique: RecipeAdapter
     lateinit var adapterFun: RecipeAdapter
     lateinit var adapterVoyage: RecipeAdapter
-    //recipe helper service
+    //tag debug
+    val TAG_RECIPE_FRAGMENT="DEBUG RECIPE FRAGMENT"
 
 
 
@@ -82,22 +84,23 @@ class RecipesFragment : Fragment() {
         setRecyclerViewFunny()
         setRecyclerViewVoyage()
 
-        adsMobs()
+        loadPub()
+
 
 
         super.onViewCreated(view, savedInstanceState)
     }
 
-    // --- SET ADS MOBS PUB ---
+    // --- LOAD PUB ---
 
-    private fun adsMobs() {
+    private fun loadPub() {
         MobileAds.initialize(
             requireContext()
         ) {} //TODO PUB ca-app-pub-5765642947536779/2555750071
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
-
     }
+
 
 
 
@@ -105,7 +108,7 @@ class RecipesFragment : Fragment() {
         val query = FirebaseFirestore.getInstance()
             .collection("recipes")
             .whereEqualTo(path, valuePath)
-//            .orderBy(listTry.random())
+            .orderBy(listTry.random())
 
 
         val options = FirestoreRecyclerOptions.Builder<RecipeModel>()
@@ -150,6 +153,7 @@ class RecipesFragment : Fragment() {
         val intentDetailsRecipe = Intent(requireContext(), RecipeDetailsActivity::class.java)
         intentDetailsRecipe.putExtra("recipePath", itemClick.uid)
         startActivity(intentDetailsRecipe)
+
 
     }
 
