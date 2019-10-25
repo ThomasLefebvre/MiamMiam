@@ -108,7 +108,7 @@ class RecipesFragment : Fragment() {
         val query = FirebaseFirestore.getInstance()
             .collection("recipes")
             .whereEqualTo(path, valuePath)
-            .orderBy(listTry.random())
+
 
 
         val options = FirestoreRecyclerOptions.Builder<RecipeModel>()
@@ -121,7 +121,7 @@ class RecipesFragment : Fragment() {
     // --- SET ALL RECYCLER VIEW ---
 
     fun setRecyclerViewClassique() {
-        adapterClassique = RecipeAdapter(setOptionFirebase("tag", "classique")) { photoClick: RecipeModel ->
+        adapterClassique = RecipeAdapter(setOptionFirebase("tag", "c")) { photoClick: RecipeModel ->
             articleClick(photoClick)
         }
         recyclerViewClassique.setHasFixedSize(false)
@@ -130,7 +130,7 @@ class RecipesFragment : Fragment() {
     }
 
     fun setRecyclerViewFunny() {
-        adapterFun = RecipeAdapter(setOptionFirebase("tag", "fun")) { photoClick: RecipeModel ->
+        adapterFun = RecipeAdapter(setOptionFirebase("tag", "f")) { photoClick: RecipeModel ->
             articleClick(photoClick)
         }
         recyclerViewFunny.setHasFixedSize(false)
@@ -139,7 +139,7 @@ class RecipesFragment : Fragment() {
     }
 
     fun setRecyclerViewVoyage() {
-        adapterVoyage = RecipeAdapter(setOptionFirebase("tag", "voyage")) { photoClick: RecipeModel ->
+        adapterVoyage = RecipeAdapter(setOptionFirebase("tag", "v")) { photoClick: RecipeModel ->
             articleClick(photoClick)
         }
         recyclerViewVoyage.setHasFixedSize(false)

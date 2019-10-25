@@ -2,15 +2,22 @@ package fr.thomas.lefebvre.miammiam.ui.activity
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import fr.thomas.lefebvre.miammiam.R
 import fr.thomas.lefebvre.miammiam.model.RecipeModel
+import fr.thomas.lefebvre.miammiam.model.UserModel
 import fr.thomas.lefebvre.miammiam.service.RecipeHelper
+import fr.thomas.lefebvre.miammiam.service.UserHelper
 import fr.thomas.lefebvre.miammiam.ui.adapter.IngredientAdapter
 import kotlinx.android.synthetic.main.activity_recipe_details.*
 
@@ -29,6 +36,12 @@ class RecipeDetailsActivity : AppCompatActivity() {
     val SHARED_PREF = "sharedPrefs"
     val COUNT_PUB = "countPub"
     var count = 0
+    // current user
+    val currentUser = FirebaseAuth.getInstance().currentUser
+    // user helper firestore
+    val userHelper = UserHelper()
+    //recipe like boolean
+    var isLiked = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +49,10 @@ class RecipeDetailsActivity : AppCompatActivity() {
         recipePath = intent.getStringExtra("recipePath")
         setContentView(R.layout.activity_recipe_details)
         getRecipe(recipePath!!)
+        getLiked(currentUser!!.uid, recipePath!!)
         loadPub()
         loadCounter()
+        clickOnButtonlike()
 
 
     }
@@ -70,10 +85,50 @@ class RecipeDetailsActivity : AppCompatActivity() {
             textViewTime.text = recipeFireStore?.time
             textViewQuantity.text = recipeFireStore?.quantity
 
+            if (recipeFireStore?.listIngredients != null) {
+                initRecyclerViewIngredients(recipeFireStore!!.listIngredients!!)
+            }
+            if (recipeFireStore?.listStep != null) {
+                initRecyclerViewSteps(recipeFireStore.listStep!!)
+            }
 
-            initRecyclerViewIngredients(recipeFireStore!!.listIngredients!!)
-            initRecyclerViewSteps(recipeFireStore.listStep!!)
         }
+    }
+
+    fun getLiked(uidUser: String, recipePath: String) {
+        userHelper.getUserById(uidUser).addOnSuccessListener { documentSnapshot ->
+            val user = documentSnapshot.toObject(UserModel::class.java)
+            val listRecipeLike = user!!.bookRecipes
+            for (recipe in listRecipeLike) {
+                if (recipe == recipePath) {
+                    isLiked = true
+                    if (isLiked) {
+                        floatingActionButtonLike.backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.pink))
+                    }
+                }
+            }
+            if(!isLiked) floatingActionButtonLike.backgroundTintList= ColorStateList.valueOf(resources.getColor(R.color.colorPrimaryDark))
+        }
+    }
+
+    // ---  LIVE BUTTON ---
+
+    private fun clickOnButtonlike() {
+        floatingActionButtonLike.setOnClickListener {
+            if (!isLiked) {
+                floatingActionButtonLike.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.pink))
+                userHelper.updateBookUser(recipePath!!, currentUser!!.uid)
+                isLiked = true
+            } else {
+                userHelper.remooveBookUser(recipePath!!, currentUser!!.uid)
+                floatingActionButtonLike.backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.colorPrimaryDark))
+                isLiked = false
+            }
+
+        }
+
     }
 
     // --- COUNTER PUB ---
@@ -111,7 +166,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
     override fun onBackPressed() {
         saveCounter()
 
-        if (mInterstitialAd.isLoaded&&count==0) {
+        if (mInterstitialAd.isLoaded && count == 0) {
             mInterstitialAd.show()
         } else {
             Log.d(TAG, "The interstitial wasn't loaded yet.")
