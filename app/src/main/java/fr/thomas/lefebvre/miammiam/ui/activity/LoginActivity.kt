@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
     private val RC_SIGN_IN: Int = 123
     lateinit var providers: List<AuthUI.IdpConfig>
     private val userHelper=UserHelper()
+    private val currentUser=FirebaseAuth.getInstance().currentUser
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,15 +34,23 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showSignInOptions(){
 
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setTheme(R.style.AppSign)
-                .setLogo(R.drawable.ic_tomato)
-                .setAvailableProviders(providers)
-//                .setIsSmartLockEnabled(false)//TODO DELETE FOR AUTOMATIC CHECK LOGIN
-                .build(),
-            RC_SIGN_IN)
+        if(currentUser==null){
+            startActivityForResult(
+                AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setTheme(R.style.AppSign)
+                    .setLogo(R.drawable.ic_tomato)
+                    .setAvailableProviders(providers)
+                    .setIsSmartLockEnabled(false)
+                    .build(),
+                RC_SIGN_IN)
+        }
+        else{
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+
 
     }
 

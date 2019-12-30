@@ -1,7 +1,10 @@
 package fr.thomas.lefebvre.miammiam.ui.activity
 
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -11,22 +14,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import androidx.fragment.app.Fragment
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
 import fr.thomas.lefebvre.miammiam.R
+import fr.thomas.lefebvre.miammiam.service.RecipeHelper
 import fr.thomas.lefebvre.miammiam.ui.fragment.BookFragment
 import fr.thomas.lefebvre.miammiam.ui.fragment.CategoryFragment
 import fr.thomas.lefebvre.miammiam.ui.fragment.RecipesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.dialog_ingredient.view.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     val currentUser = FirebaseAuth.getInstance().currentUser
+    val recipeHelper = RecipeHelper()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,23 +60,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.nav_bottom_recipes -> {
-                replaceFragment(RecipesFragment())
-                return@OnNavigationItemSelectedListener true
+
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_bottom_recipes -> {
+                    replaceFragment(RecipesFragment())
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_bottom_category -> {
+                    replaceFragment(CategoryFragment())
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.nav_bottom_book -> {
+                    replaceFragment(BookFragment())
+                    return@OnNavigationItemSelectedListener true
+                }
             }
-            R.id.nav_bottom_category -> {
-                replaceFragment(CategoryFragment())
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.nav_bottom_book -> {
-                replaceFragment(BookFragment())
-                return@OnNavigationItemSelectedListener true
-            }
+            false
         }
-        false
-    }
 
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -92,26 +99,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_search -> true
-            else -> super.onOptionsItemSelected(item)
+        when (item.itemId) {
+//            R.id.action_search ->{
+//
+//            }
+            R.id.action_add -> {
+                startActivity(Intent(this, AddRecipeActivity::class.java))
+            }
+
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_home -> {
+            R.id.nav_profil -> {
 
             }
-            R.id.nav_gallery -> {
-
+            R.id.nav_add_recipe -> {
+                startActivity(Intent(this, AddRecipeActivity::class.java))
             }
-            R.id.nav_slideshow -> {
 
-            }
-            R.id.nav_tools -> {
+            R.id.nav_log_out -> {
 
+                alertDialogLogOut()
             }
 
         }
@@ -135,11 +147,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // --- GET USER INFORMATION ---
 
-    fun updateUserInformations(){
-        val navHeader=nav_view.getHeaderView(0)
-        val navUserName=navHeader.textViewNameCurrentUser
-        val stringBuilder=StringBuilder(getString(R.string.chef)+" "+currentUser?.displayName)
-        navUserName.text=stringBuilder
+    fun updateUserInformations() {
+        val navHeader = nav_view.getHeaderView(0)
+        val navUserName = navHeader.textViewNameCurrentUser
+        val stringBuilder = StringBuilder(getString(R.string.chef) + " " + currentUser?.displayName)
+        navUserName.text = stringBuilder
 
+    }
+
+    // --- ALERT DIALOG LOG OUT ---
+
+    private fun alertDialogLogOut() {
+        val mDialog = LayoutInflater.from(this)
+            .inflate(R.layout.dialog_ingredient, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialog)
+        val mAlertDialog = mBuilder.show()
+        mDialog.buttonValidIngredient.setOnClickListener {
+            AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+            mAlertDialog.dismiss()
+
+        }
+        mDialog.buttonCancelIngredient.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
     }
 }

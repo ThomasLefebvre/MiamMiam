@@ -39,7 +39,15 @@ class UserHelper {
         return getUsersCollection().document(uid).update("bookRecipes",FieldValue.arrayUnion(uidRecipe))
     }
 
-    fun remooveBookUser(uidRecipe:String,uid:String):Task<Void>{
+    fun updateBookUserPhotoUrl(listPhotoUrl:String,uid:String):Task<Void>{
+        return getUsersCollection().document(uid).update("listPhotoUrl",FieldValue.arrayUnion(listPhotoUrl))
+    }
+
+    fun removeBookUserPhotoUrl(listPhotoUrl:String,uid:String):Task<Void>{
+        return getUsersCollection().document(uid).update("listPhotoUrl",FieldValue.arrayRemove(listPhotoUrl))
+    }
+
+    fun removeBookUser(uidRecipe:String,uid:String):Task<Void>{
         return getUsersCollection().document(uid).update("bookRecipes",FieldValue.arrayRemove(uidRecipe))
     }
 

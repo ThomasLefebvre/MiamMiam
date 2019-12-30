@@ -46,7 +46,10 @@ class BooksAdapter(
 
         fun bind(context: Context, recipe: String,photoUrl:String,listenerRecipe: (String) -> Unit){
             nameRecipe.text=recipe
-            Picasso.get().load(photoUrl).into(photoRecipe)
+            Picasso.get().load(photoUrl)
+                .resize(300,300)
+                .centerCrop()
+                .into(photoRecipe)
 
             itemView.setOnClickListener {
                 listenerRecipe(recipe)

@@ -22,7 +22,7 @@
                 android:src="@drawable/ic_tacos"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewAperitif" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewAperitif" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonApero"
@@ -45,7 +45,7 @@
                 android:src="@drawable/ic_eggh"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewEntre" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewEntre" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonEntre"
@@ -68,7 +68,7 @@
                 android:src="@drawable/ic_hotpeasf"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewPlat" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewPlat" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonPlat"
@@ -92,7 +92,7 @@
                 android:src="@drawable/ic_meat"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewMeat" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewMeat" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonMeat"
@@ -114,7 +114,7 @@
                 android:src="@drawable/ic_carrot"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewVege" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewVege" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonVege"
@@ -137,7 +137,7 @@
                 android:src="@drawable/ic_fish"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewFish" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewFish" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonFish"
@@ -160,7 +160,7 @@
                 android:src="@drawable/ic_cupcake"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewDessert" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewDessert" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonCake"
@@ -183,7 +183,7 @@
                 android:src="@drawable/ic_smoothie"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" android:id="@+id/imageViewSmoothie" android:layout_margin="32dp"/>
+                android:layout_height="wrap_content" android:id="@+id/imageViewSmoothie" android:layout_margin="16dp"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/buttonSmoothie"

@@ -14,14 +14,11 @@
 
     <string name="menu_bottom_miam">Miam</string>
     <string name="menu_bottom_category">Catégories</string>
-    <string name="menu_bottom_book">Ton livre</string>
+    <string name="menu_bottom_book">Favoris</string>
 
-    <string name="menu_home">Home</string>
+
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
 
 
     <string name="facebook_application_id" translatable="false">1331457660361205</string>
@@ -33,21 +30,39 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="classique">Selection recettes classiques :</string>
-    <string name="funny">Selection recettes originales :</string>
+    <string name="classique">Selection recettes du jour :</string>
+    <string name="add_recipe">Ajouter une recette</string>
     <string name="voyage">Selection recettes du monde :</string>
     <string name="start_recipe">Recette Star</string>
 
 
     <string name="entree">Entrées</string>
-    <string name="aperitifs">Apéritifs</string>
+    <string name="aperitifs">Snacking</string>
     <string name="plats">Plats</string>
     <string name="viandes">Viandes</string>
     <string name="poissons">Poissons</string>
     <string name="vege">Végétarien</string>
     <string name="dessert">Desserts</string>
-    <string name="smoothie">Smoothies</string>
+    <string name="smoothie">Liquide</string>
 
+    //add recipe fragment
+    <string name="name_recipe">Nom de la recette</string>
+    <string name="number_person">Nbre de personnes</string>
+    <string name="time">Temps en mn</string>
+    <string name="add_ingredient">Ajouter un ingredient</string>
+    <string name="add_step">Ajouter une étape</string>
+    <string name="add_photo">Ajouter une photo</string>
+    <string name="online">Mettre en ligne</string>
+
+    //dialog ingredient
+    <string name="dialog_ingredient">ex:100gr tomates</string>
+    <string name="dialog_valider">Valider</string>
+    <string name="dialog_annuler">Annuler</string>
     <string name="chef">Chef</string>
+
+    //menu drawer
+    <string name="log_out">Se déconnecter</string>
+    <string name="profil">Mon compte</string>
+    <string name="add_recipe_drawer">Ajouter une recette</string>
 
 </resources>

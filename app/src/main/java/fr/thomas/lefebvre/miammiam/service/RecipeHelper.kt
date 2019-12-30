@@ -3,6 +3,7 @@ package fr.thomas.lefebvre.miammiam.service
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.*
+import fr.thomas.lefebvre.miammiam.model.RecipeModel
 
 class RecipeHelper {
 
@@ -17,7 +18,7 @@ class RecipeHelper {
     //--- GET RECIPE ---
 
      fun getAllRecipes():Task<QuerySnapshot>{
-        return getRecipesCollection().get()
+        return getRecipesCollection().limit(3).get()
     }
 
      fun getRecipeById(uid:String): Task<DocumentSnapshot> {
@@ -26,5 +27,11 @@ class RecipeHelper {
 
     fun getRecipeByUid(tag:String):Task<DocumentSnapshot>{
         return getRecipesCollection().document("tag").get()
+    }
+
+    //--- SAVE RECIPE ---
+
+    fun createRecipeOnFireStore(recipeModel:RecipeModel){
+        getRecipesCollection().document(recipeModel.uid).set(recipeModel)
     }
 }

@@ -34,11 +34,11 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class BookFragment : Fragment() {
-    val currentUser=FirebaseAuth.getInstance().currentUser!!.uid
-    val userHelper=UserHelper()
-    val recipeHelper=RecipeHelper()
-    var listRecipe:ArrayList<String> = arrayListOf<String>()
-    var listPhotoUrl:ArrayList<String> = arrayListOf()
+    val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
+    val userHelper = UserHelper()
+    val recipeHelper = RecipeHelper()
+    var listRecipe: ArrayList<String> = arrayListOf<String>()
+    var listPhotoUrl: ArrayList<String> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,28 +54,33 @@ class BookFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onResume() {
+        getUserRecipeList(currentUser)
+        super.onResume()
+    }
+
     // --- GET RECIPE OF BOOKS ---
 
-    private fun getUserRecipeList(uidUser:String){
+    private fun getUserRecipeList(uidUser: String) {
         userHelper.getUserById(uidUser).addOnSuccessListener { documentSnapshot ->
             val user = documentSnapshot.toObject(UserModel::class.java)
-             listRecipe = user!!.bookRecipes
-            listPhotoUrl= user!!.listPhotoUrl
+            if (user?.bookRecipes != null) {
+                listRecipe = user.bookRecipes
+                listPhotoUrl = user.listPhotoUrl
 
+            }
 
-                setRecyclerViewBook()
-
+            setRecyclerViewBook()
 
         }
     }
 
 
-
     private fun setRecyclerViewBook() {
 
         recyclerView_Books.apply {
-            layoutManager = GridLayoutManager(requireContext(),2)
-            adapter = BooksAdapter(requireContext(), listRecipe,listPhotoUrl){recipe:String->
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = BooksAdapter(requireContext(), listRecipe, listPhotoUrl) { recipe: String ->
                 recipeClick(recipe)
 
             }
@@ -84,8 +89,8 @@ class BookFragment : Fragment() {
     }
 
     private fun recipeClick(recipe: String) {
-        val intentRecipeDetails=Intent(requireContext(),RecipeDetailsActivity::class.java)
-        intentRecipeDetails.putExtra("recipePath",recipe)
+        val intentRecipeDetails = Intent(requireContext(), RecipeDetailsActivity::class.java)
+        intentRecipeDetails.putExtra("recipePath", recipe)
         startActivity(intentRecipeDetails)
     }
 

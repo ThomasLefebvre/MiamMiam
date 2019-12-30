@@ -41,7 +41,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:21.2.0'//facebook sdk
     implementation 'com.google.android.gms:play-services-ads:18.2.0'//google ads
     implementation 'com.squareup.picasso:picasso:2.71828'//picasso
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
 
+
+    // ...
 }
+
 
 apply plugin: 'com.google.gms.google-services'

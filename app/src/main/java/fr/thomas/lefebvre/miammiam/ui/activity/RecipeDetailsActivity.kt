@@ -26,6 +26,10 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
     // recipe path
     var recipePath: String? = null
+    // recipe photo url
+    var recipePhotoUrl:String=""
+    //recipe firestore
+    var recipeFireStore=RecipeModel()
     // recipe helper firestore
     val recipeHelper = RecipeHelper()
     //admob interstitial
@@ -49,6 +53,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         recipePath = intent.getStringExtra("recipePath")
         setContentView(R.layout.activity_recipe_details)
         getRecipe(recipePath!!)
+        Log.d("DEBUG","$recipePath")
         getLiked(currentUser!!.uid, recipePath!!)
         loadPub()
         loadCounter()
@@ -78,12 +83,16 @@ class RecipeDetailsActivity : AppCompatActivity() {
     // --- LOAD RECIPE TO FIREBASE DATA ---
     fun getRecipe(uidRecipe: String) {
         recipeHelper.getRecipeById(uidRecipe).addOnSuccessListener { documentSnapshot ->
-            val recipeFireStore = documentSnapshot.toObject(RecipeModel::class.java)
-            Picasso.get().load(recipeFireStore?.photoUrl).into(imageViewRecipeDetails)
-            textViewTitleRecipes.text = recipeFireStore?.name
-            textViewCal.text = recipeFireStore?.cal
-            textViewTime.text = recipeFireStore?.time
-            textViewQuantity.text = recipeFireStore?.quantity
+            recipeFireStore = documentSnapshot.toObject(RecipeModel::class.java)!!
+            Picasso.get().load(recipeFireStore.photoUrl)
+                .resize(300,300)
+                .centerCrop()
+                .into(imageViewRecipeDetails)
+            textViewTitleRecipes.text = recipeFireStore.name
+            textViewCal.text = recipeFireStore.cal
+            textViewTime.text = recipeFireStore.time
+            textViewQuantity.text = recipeFireStore.quantity
+            recipePhotoUrl=recipeFireStore.photoUrl
 
             if (recipeFireStore?.listIngredients != null) {
                 initRecyclerViewIngredients(recipeFireStore!!.listIngredients!!)
@@ -119,9 +128,11 @@ class RecipeDetailsActivity : AppCompatActivity() {
             if (!isLiked) {
                 floatingActionButtonLike.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.pink))
                 userHelper.updateBookUser(recipePath!!, currentUser!!.uid)
+                userHelper.updateBookUserPhotoUrl(recipePhotoUrl,currentUser.uid)
                 isLiked = true
             } else {
-                userHelper.remooveBookUser(recipePath!!, currentUser!!.uid)
+                userHelper.removeBookUser(recipePath!!, currentUser!!.uid)
+                userHelper.removeBookUserPhotoUrl(recipePhotoUrl,currentUser.uid)
                 floatingActionButtonLike.backgroundTintList =
                     ColorStateList.valueOf(resources.getColor(R.color.colorPrimaryDark))
                 isLiked = false

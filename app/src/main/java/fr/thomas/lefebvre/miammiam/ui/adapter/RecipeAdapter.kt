@@ -32,7 +32,10 @@ class RecipeAdapter (
 
         fun bind(recipe:RecipeModel,listener: (RecipeModel) -> Unit)= with(itemView){
             val photoUrl=recipe.photoUrl
-            Picasso.get().load(photoUrl).into(photoRecipe)
+            Picasso.get().load(photoUrl)
+                .resize(300,300)
+                .centerCrop()
+                .into(photoRecipe)
 
             itemView.setOnClickListener {
                 listener(recipe)
