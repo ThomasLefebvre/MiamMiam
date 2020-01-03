@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="AppSign" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/side_nav_bar</item>
+        <item name="android:windowBackground">@color/ic_launcher_background_tomato</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>

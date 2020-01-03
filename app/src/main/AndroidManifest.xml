@@ -13,15 +13,24 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.AddRecipeActivity"></activity>
+        <activity android:name=".ui.activity.AccountActivity"></activity>
+        <activity
+                android:name=".ui.activity.CategoryActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.activity.AddRecipeActivity"
+                android:screenOrientation="portrait" />
 
         <meta-data
                 android:name="com.google.android.gms.ads.APPLICATION_ID"
                 android:value="@string/pub_key" />
 
-        <activity android:name=".ui.activity.RecipeDetailsActivity"></activity>
+        <activity
+                android:name=".ui.activity.RecipeDetailsActivity"
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".ui.activity.LoginActivity"
+                android:screenOrientation="portrait"
                 android:theme="@style/AppSign">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +42,7 @@
                 android:name=".ui.activity.MainActivity"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

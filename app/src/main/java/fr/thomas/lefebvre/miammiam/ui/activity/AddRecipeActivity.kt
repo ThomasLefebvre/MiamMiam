@@ -24,12 +24,11 @@ import kotlinx.android.synthetic.main.dialog_step.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.graphics.Bitmap
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.dialog_save_recipe.view.*
 import java.io.ByteArrayOutputStream
 
 
+@Suppress("DEPRECATION")
 class AddRecipeActivity : AppCompatActivity() {
 
     val listIngredient = ArrayList<String>()
@@ -142,6 +141,22 @@ class AddRecipeActivity : AppCompatActivity() {
         }
     }
 
+    private fun alertDialogSaveRecipe(){    //  SAVE AND LEAVE ACTIVITY OR CANCEL -----------------
+        val mDialog = LayoutInflater.from(this)
+            .inflate(R.layout.dialog_save_recipe, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialog)
+        val mAlertDialog = mBuilder.show()
+        mDialog.buttonValidSave.setOnClickListener {
+
+            uploadPhoto()
+            mAlertDialog.dismiss()
+        }
+        mDialog.buttonCancelSave.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+    }
+
     //  ---------           On click                 --------------
 
     private fun onClickAddIngredient() {
@@ -164,7 +179,15 @@ class AddRecipeActivity : AppCompatActivity() {
 
     private fun onClickSaveRecipe() {
         buttonSaveOnline.setOnClickListener {
-            uploadPhoto()
+
+            if (filePath != null){
+                alertDialogSaveRecipe()
+            }
+            else {
+                Toast.makeText(this, "Merci de sélectionner une photo", Toast.LENGTH_SHORT)
+                    .show()//TODO in string
+            }
+
         }
     }
 
@@ -175,14 +198,6 @@ class AddRecipeActivity : AppCompatActivity() {
             CODE_CHOOSE_PHOTO -> {
                 if (resultCode == Activity.RESULT_OK) {
                     imageViewAddRecipe.setImageURI(data!!.data)
-
-
-
-
-
-
-
-
 
                     filePath = data.data
                 }
@@ -214,7 +229,7 @@ class AddRecipeActivity : AppCompatActivity() {
             bmp.compress(Bitmap.CompressFormat.JPEG, 25, baos)
 
             val data = baos.toByteArray()
-            val uploadTask = ref?.putBytes(data!!)
+            val uploadTask = ref.putBytes(data)
 
 
             val urlTask = uploadTask.continueWithTask { task ->
@@ -235,14 +250,12 @@ class AddRecipeActivity : AppCompatActivity() {
                     // ...
                 }
             }
-        } else {
-            Toast.makeText(this, "Merci de choisir une photo", Toast.LENGTH_SHORT)
-                .show()//TODO in string
         }
     }
 
     private fun saveRecipeOnFireStore() {
         recipeHelper.createRecipeOnFireStore(setRecipe())
+        finish()
 
     }
 
@@ -259,10 +272,16 @@ class AddRecipeActivity : AppCompatActivity() {
             quantity_add.text.toString(),
             "",
             "",
-            time_add_recipe.text.toString()
+            time_add_recipe.text.toString(),
+            System.currentTimeMillis()
         )
         return recipe
     }
+
+
+
+
+
 
 
 }

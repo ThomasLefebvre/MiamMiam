@@ -25,8 +25,8 @@ class RecipeHelper {
         return getRecipesCollection().document(uid).get()
     }
 
-    fun getRecipeByUid(tag:String):Task<DocumentSnapshot>{
-        return getRecipesCollection().document("tag").get()
+    fun getRecipeByCategory(category:String):Task<QuerySnapshot>{
+        return getRecipesCollection().whereEqualTo("category",category).get()
     }
 
     //--- SAVE RECIPE ---

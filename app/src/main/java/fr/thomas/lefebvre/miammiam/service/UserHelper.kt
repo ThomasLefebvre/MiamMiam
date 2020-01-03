@@ -51,4 +51,11 @@ class UserHelper {
         return getUsersCollection().document(uid).update("bookRecipes",FieldValue.arrayRemove(uidRecipe))
     }
 
+
+    // --- DELETE ---
+
+    fun deleteUser(uid: String):Task<Void> {
+        return getUsersCollection().document(uid).delete()
+    }
+
 }

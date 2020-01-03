@@ -70,9 +70,14 @@ class BookFragment : Fragment() {
 
             }
 
-            setRecyclerViewBook()
 
+            setRecyclerViewBook()
+            if (listRecipe.size==0){
+                cardViewNoRecipesFavoris.visibility=View.VISIBLE
+            }
         }
+
+
     }
 
 

@@ -73,13 +73,7 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
-
-
-
-
         setRecyclerViewClassique()
-
-
         loadPub()
 
 
@@ -101,18 +95,10 @@ class RecipesFragment : Fragment() {
 
 
     fun setOptionFirebase(): FirestoreRecyclerOptions<RecipeModel> {
-        val listSort=ArrayList<String>()
-        listSort.add("name")
-        listSort.add("category")
-        listSort.add("cal")
-        listSort.add("quantity")
-        listSort.add("time")
-        var i=(0..4).random()
-        Log.d("DEBUG","$i")
+
         val query = FirebaseFirestore.getInstance()
             .collection("recipes")
-//            .whereEqualTo("tag","online")//TODO FOR MODERATION
-            .orderBy(listSort[i])
+            .whereEqualTo("tag","star")//TODO FOR MODERATION
             .limit(6)
 
 
@@ -125,7 +111,7 @@ class RecipesFragment : Fragment() {
         return options
     }
 
-    // --- SET ALL RECYCLER VIEW ---
+    // --- SET RECYCLER VIEW ---
 
     fun setRecyclerViewClassique() {
         adapterClassique = RecipeAdapter(setOptionFirebase()) { photoClick: RecipeModel ->

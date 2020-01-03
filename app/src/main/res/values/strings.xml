@@ -53,9 +53,10 @@
     <string name="add_step">Ajouter une étape</string>
     <string name="add_photo">Ajouter une photo</string>
     <string name="online">Mettre en ligne</string>
+    <string name="valid_recipe">Tu valides cette recette?</string>
 
     //dialog ingredient
-    <string name="dialog_ingredient">ex:100gr tomates</string>
+    <string name="dialog_ingredient">ex:100 gr tomates</string>
     <string name="dialog_valider">Valider</string>
     <string name="dialog_annuler">Annuler</string>
     <string name="chef">Chef</string>
@@ -64,5 +65,27 @@
     <string name="log_out">Se déconnecter</string>
     <string name="profil">Mon compte</string>
     <string name="add_recipe_drawer">Ajouter une recette</string>
+    <string name="quitt_dialog">Quitter MiamMiam?</string>
+    //alert dialog logout
+    <string name="log_out_dialog">Es-tu sûr(e) de vouloir te déconnecter?</string>
+
+    //category query
+    <string name="fish">poisson</string>
+    <string name="snacking">snacking</string>
+    <string name="vegetarien">vege</string>
+    <string name="liquide">liquide</string>
+    <string name="viande">viande</string>
+    <string name="plat">plat</string>
+    <string name="entre">entre</string>
+    <string name="desser">dessert</string>
+
+    //cardview no result
+    <string name="no_favoris">Aucune recette dans tes favoris. Ajoutes une recette aux favoris en cliquant sur le coeur.</string>
+    <string name="no_recipe">Ajoutes ta propre recette dans cette catégorie et épates d\'autres personnes.</string>
+
+    //account activity
+    <string name="delete">Supprimer mon compte</string>
+    <string name="delete_dialog">Es-tu sûr(e) de vouloir supprimer ton compte?</string>
+
 
 </resources>

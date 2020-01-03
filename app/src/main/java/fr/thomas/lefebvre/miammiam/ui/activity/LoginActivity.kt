@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                 AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setTheme(R.style.AppSign)
-                    .setLogo(R.drawable.ic_tomato)
+                    .setLogo(R.drawable.logo_login)
                     .setAvailableProviders(providers)
                     .setIsSmartLockEnabled(false)
                     .build(),

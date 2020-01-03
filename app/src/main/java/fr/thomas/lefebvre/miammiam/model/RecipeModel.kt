@@ -13,7 +13,8 @@ data class RecipeModel (
     val quantity:String="",
     val cal:String="",
     val tag:String="",
-    val time:String=""
+    val time:String="",
+    val date:Long=0
 )
 
 

@@ -25,6 +25,8 @@ import fr.thomas.lefebvre.miammiam.ui.fragment.RecipesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.dialog_ingredient.view.*
+import kotlinx.android.synthetic.main.dialog_log_out.view.*
+import kotlinx.android.synthetic.main.dialog_quitt.view.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import java.lang.StringBuilder
 
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            alertDialogQuitt()
         }
     }
 
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_profil -> {
+                startActivity(Intent(this,AccountActivity::class.java))
 
             }
             R.id.nav_add_recipe -> {
@@ -159,11 +162,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun alertDialogLogOut() {
         val mDialog = LayoutInflater.from(this)
-            .inflate(R.layout.dialog_ingredient, null)
+            .inflate(R.layout.dialog_log_out, null)
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialog)
         val mAlertDialog = mBuilder.show()
-        mDialog.buttonValidIngredient.setOnClickListener {
+        mDialog.buttonValidLogOut.setOnClickListener {
             AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener {
@@ -173,7 +176,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             mAlertDialog.dismiss()
 
         }
-        mDialog.buttonCancelIngredient.setOnClickListener {
+        mDialog.buttonCancelLogOut.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+    }
+
+    private fun alertDialogQuitt() {
+        val mDialog = LayoutInflater.from(this)
+            .inflate(R.layout.dialog_quitt, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialog)
+        val mAlertDialog = mBuilder.show()
+        mDialog.buttonValidQuitt.setOnClickListener {
+           super.onBackPressed()
+            mAlertDialog.dismiss()
+
+        }
+        mDialog.buttonCancelQuitt.setOnClickListener {
             mAlertDialog.dismiss()
         }
     }

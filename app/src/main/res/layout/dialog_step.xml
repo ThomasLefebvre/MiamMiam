@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:padding="8dp"
                 android:text="@string/add_step"
                 android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
