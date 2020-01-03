@@ -54,6 +54,7 @@
     <string name="add_photo">Ajouter une photo</string>
     <string name="online">Mettre en ligne</string>
     <string name="valid_recipe">Tu valides cette recette?</string>
+    <string name="add_recipe_toast">La recette sera en ligne après validation</string>
 
     //dialog ingredient
     <string name="dialog_ingredient">ex:100 gr tomates</string>

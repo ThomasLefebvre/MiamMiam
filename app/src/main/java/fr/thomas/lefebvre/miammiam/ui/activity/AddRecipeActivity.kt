@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.dialog_step.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.graphics.Bitmap
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.dialog_save_recipe.view.*
 import java.io.ByteArrayOutputStream
 
@@ -255,7 +256,9 @@ class AddRecipeActivity : AppCompatActivity() {
 
     private fun saveRecipeOnFireStore() {
         recipeHelper.createRecipeOnFireStore(setRecipe())
+        Toast.makeText(this,getString(R.string.add_recipe_toast),Toast.LENGTH_LONG).show()
         finish()
+
 
     }
 
