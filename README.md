@@ -3,15 +3,26 @@
 
 An android application of recipes.
 
+### Login 
 
+<img src="./readme/login.png" width="40%" height="40%">
 
 ### Main 
 
-<img src="./readme/main.jpg" width="40%" height="40%">
+<img src="./readme/miam.jpg" width="40%" height="40%">
 
 ### Details Recipe
 
-<img src="./readme/recipe_details.jpg" width="40%" height="40%"> <img src="./readme/recipe_details_end.jpg" width="40%" height="40%"> 
+<img src="./readme/recipe.jpg" width="40%" height="40%"> 
+
+### Categories
+
+<img src="./readme/cat.png" width="40%" height="40%"> <img src="./readme/categori.png" width="40%" height="40%"> 
+
+
+### Add Recipe
+
+<img src="./readme/add.png" width="40%" height="40%"> 
 
 
 
