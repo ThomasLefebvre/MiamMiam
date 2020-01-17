@@ -9,11 +9,11 @@ An android application of recipes.
 
 ### Main 
 
-<img src="./readme/miam.jpg" width="40%" height="40%">
+<img src="./readme/miam.png" width="40%" height="40%">
 
 ### Details Recipe
 
-<img src="./readme/recipe.jpg" width="40%" height="40%"> 
+<img src="./readme/recipe.png" width="40%" height="40%"> 
 
 ### Categories
 
